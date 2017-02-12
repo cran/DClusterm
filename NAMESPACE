@@ -1,0 +1,23 @@
+# Default NAMESPACE created by R
+# Remove the previous line if you edit this file
+
+# Export all names
+exportPattern(".")
+
+# Import all packages listed as Imports or Depends
+import(
+  sp,
+  spacetime,
+  DCluster,
+  RColorBrewer,
+  parallel,
+  xts
+)
+importFrom("lme4", "glmer")
+importFrom("pscl", "zeroinfl")
+importFrom("latticeExtra", "layer")
+importFrom("gridExtra", "grid.arrange")
+importFrom("grDevices", "dev.new")
+importFrom("methods", "as")
+importFrom("stats", "coef", "deviance", "family", "fitted", "formula",
+  "glm", "logLik", "model.matrix", "pchisq", "rpois", "time")
