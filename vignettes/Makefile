@@ -1,6 +1,6 @@
 all: pdf 
 
-pdf: jss_paper.pdf
+pdf: DClusterm.pdf
 
 %.pdf: %.tex
 	pdflatex $*
@@ -8,7 +8,8 @@ pdf: jss_paper.pdf
 	pdflatex $*
 	pdflatex $*
 	pdflatex $*
+	rm DClusterm-0*pdf
 
 clean:
-	rm *tex *aux *log *bbl *blg *out jss_paper-*.pdf jss.* 
+	rm *tex *aux *log *bbl *blg *out DClusterm-*.pdf jss.bst jss.cls
 	

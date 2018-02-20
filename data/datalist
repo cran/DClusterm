@@ -1,0 +1,5 @@
+NY8: NY8 TCE
+NY8_clusters: ny.cl0 ny.cl1 ny.m0 ny.m1
+Navarre: brainnav brainnavnb
+brainNM: brainst losalamos
+brainNM_clusters: nm.cl0 nm.cl1 nm.m0 nm.m1

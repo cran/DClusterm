@@ -7,6 +7,7 @@
 ##' 
 ##' @return probability model coefficient <=k
 ##'
+##' @export
 computeprob <- function(func, k) {
   idx <- which(func[, 1] <= k)
   if(length(idx) > 0) {
@@ -29,10 +30,27 @@ computeprob <- function(func, k) {
 ##' for spatio-temporal clusters.
 ##
 ##' @param stfdf A sp or spacetime object with the information about the data.
-##' @param results Results from a call to DetectClusterModel
+##' @param results Results from a call to \link{DetectClustersModel}
 ##' 
 ##' @return A list with as many elements as clusters in 'results'
 ##'
+##' @examples
+##' library("DClusterm")
+##' library("RColorBrewer")
+##'
+##' data("brainNM")
+##' data("brainNM_clusters")
+##'
+##' stcl <- get.stclusters(brainst, nm.cl0)
+##' #Get first cluster
+##' brainst$CLUSTER <- ""
+##' brainst$CLUSTER[ stcl[[1]] ] <- "CLUSTER"
+##'
+##' #Plot cluster
+##' stplot(brainst[, , "CLUSTER"], at = c(0, 0.5, 1.5), col = "#4D4D4D",
+##'   col.regions = c("white", "gray"))
+##'
+##' @export
 get.stclusters <- function(stfdf, results) {
   if(inherits(stfdf, "Spatial")) {
     d <- as.data.frame(coordinates(stfdf))
@@ -73,7 +91,7 @@ get.stclusters <- function(stfdf, results) {
 ##' clusters. The position i of the column is equal to 1 if the polygon i is
 ##' in the cluster or 0 if it is not in the cluster.
 ##'
-##' @param datamap data of the SpatialPolygonsDataFrame with the polygons
+##' @param datamap data of the \link{SpatialPolygonsDataFrame} with the polygons
 ##' of the map.
 ##' @param knresults data frame with information of the detected clusters.
 ##' Each row represents the information of one of the clusters.
@@ -85,6 +103,22 @@ get.stclusters <- function(stfdf, results) {
 ##' The position i of the column is equal to 1 if the polygon i is in the cluster
 ##' or 0 if it is not in the cluster.
 ##'
+##' @examples
+##' library("DClusterm")
+##' library("RColorBrewer")
+##'
+##' data("NY8")
+##' data("NY8_clusters")
+##'
+##' stcl <- knbinary(NY8, ny.cl1)
+##' #Get first cluster
+##' NY8$CLUSTER <- stcl[, 1]
+##'
+##' #Plot cluster
+##' spplot(NY8, "CLUSTER", at = c(0, 0.5, 1.5), col = "#4D4D4D",
+##'   col.regions = c("white", "gray"))
+##'
+##' @export
 knbinary <- function(datamap, knresults) {
   clusters <- get.stclusters(datamap, knresults)
   res <- lapply(clusters, function(X, n) {
@@ -106,7 +140,7 @@ knbinary <- function(datamap, knresults) {
 ##' The levels of the factor are "NCL" if the polygon of the map is not
 ##' in any cluster, and "CL" if the polygon i is in cluster i.
 ##'
-##' @param datamap data of the SpatialPolygonsDataFrame with the polygons
+##' @param datamap data of the \link{SpatialPolygonsDataFrame} with the polygons
 ##' of the map.
 ##' @param knresults Data frame with information of the detected clusters.
 ##' Each row represents the information of one of the clusters.
@@ -117,6 +151,21 @@ knbinary <- function(datamap, knresults) {
 ##'
 ##' @return factor with levels that represent the clusters.
 ##'
+##' @examples
+##' library("DClusterm")
+##' library("RColorBrewer")
+##'
+##' data("NY8")
+##' data("NY8_clusters")
+##'
+##' stcl <- mergeknclusters(NY8, ny.cl1, 1:2)
+##' #Get first cluster
+##' NY8$CLUSTER <- stcl
+##'
+##' #Plot cluster
+##' spplot(NY8, "CLUSTER", col.regions = c("white", "lightgray", "gray"))
+##'
+##' @export
 mergeknclusters <- function(datamap, knresults, indClustersPlot) {
   n <- nrow(knresults)
   knbin <- as.matrix(knbinary(datamap, knresults))	
@@ -126,75 +175,26 @@ mergeknclusters <- function(datamap, knresults, indClustersPlot) {
 }
 
 
-
-##' @title Plots the clusters that do not overlap.
+##' @title Remove overlapping clusters
+##'
+##' @description This function slims the number of clusters down.
+##' The spatial scan statistic is known to detect duplicated
+##' clusters. This function aims to reduce the number of clusters
+##' by removing duplicated and overlapping clusters.
+##'
+##' @param d Data.frame with data used in the detection of clusters.
+##' @param knresults Object returned by function opgam() with the clusters detected.
+##' @param minsize Minimum size of cluster (default to 1).
+##'
+##' @return A subset of knresults with non-overlaping clusters of at least
+##' minsize size.
+##'
+##' @examples
+##' data("brainNM_clusters")
 ##' 
-##' @description This function plots the detected clusters that do not overlap.
-##' There are as many windows as different start dates. All clusters
-##' with the same start date are represented in the same window.
-##'
-##' @param statsAllClustersNoOverlap data frame with information of the detected clusters
-##' that no overlap. Each row represents the information of one of the clusters.
-##' It contains the coordinates of the center, the size, the start
-##' and end dates, the log-likelihood ratio, a boolean indicating if it is a
-##' cluster (TRUE in all cases), and the p-value of the cluster.
-##' @param colors vector with the colors of the clusters.
-##' @param map SpatialPolygonsDataFrame with the polygons of the map.
-##'
-##' @return plots of the detected clusters for each start date.
-##'
-PlotClustersNoOverlap <- function(statsAllClustersNoOverlap, colors, map) {
-
-  # Name of the clusters. Cluster's order by their significance
-  nameClusters <- 1:nrow(statsAllClustersNoOverlap)
-
-  # First maps are the ones with clusters with lower minDateCluster
-  sortMinDateCluster <- sort(unique(statsAllClustersNoOverlap$minDateCluster))
-
-  lsort <- length(sortMinDateCluster)
-  for(i in 1:lsort) {
-
-    indClustersPlot <-
-     which(statsAllClustersNoOverlap$minDateCluster == sortMinDateCluster[i])
-    knslim <- statsAllClustersNoOverlap[indClustersPlot, ]
-    map$clusters <-
-     mergeknclusters(as(map, "data.frame"), knslim, indClustersPlot)
-
-    textLegend<-c("       End date:",
-     paste(nameClusters, ". ", 
-     statsAllClustersNoOverlap$maxDateCluster)[indClustersPlot])
-    colLegend<-c("white", colors[indClustersPlot])
-
-    p1 = spplot(map, "clusters",  col = "gray", col.regions = colLegend,
-     colorkey = FALSE, 
-     key = list(space = "right", 
-      points = list(pch = 19, cex = 1.8, col = colLegend), 
-      text = list(textLegend)), 
-     sp.layout = list(list("sp.text", as.matrix(knslim[, 1:2]), 
-      nameClusters[indClustersPlot], cex=1, font=2)),
-     main = paste("Start date", sortMinDateCluster[i]))
-
-    dev.new()
-
-    plot(p1)
-    #print(p1, position = c(0+(i-1)/lsort,0,i/lsort,1), more=T)
-  }
-}
-
-#' @title Remove overlapping clusters
-#
-#' @description This function slims the number of clusters down.
-#' The spatial scan statistic is known to detect duplicated
-#' clusters. This function aims to reduce the number of clusters
-#' by removing duplicated and overlapping clusters.
-#'
-#' @param d Data.frame with data used in the detection of clusters.
-#' @param knresults Object returned by function opgam() with the clusters detected.
-#' @param minsize Minimum size of cluster (default to 1).
-#'
-#' @return A subset of knresults with non-overlaping clusters of at least
-#' minsize size.
-#'
+##' nm.cl1.s <- slimknclusters(brainst, nm.cl1)
+##' nm.cl1.s
+##' @export
 
 slimknclusters<-function(d, knresults, minsize = 1)
 {
@@ -229,5 +229,32 @@ slimknclusters<-function(d, knresults, minsize = 1)
         }
 
         return(knresults[clusters, ])
+}
+
+
+##' @title Extract indices of the areas in the clusters detected
+##
+##' @description This function returns a categorical vector that identifies
+##' to which cluster a given areas belongs. It is the empty string for 
+##' areas not in a cluster.
+##' 
+##' @param spdf Spatial object with data used in the detection of clusters.
+##' @param knresults Table with the clusters detected.
+##'
+##' @return A categorical vector with value the cluster to which area belongs.
+##' It is the empty string for regions not in a cluster.
+##'
+##'
+##' @export
+get.allknclusters <- function (spdf, knresults) {
+  clusters <- rep("", nrow(spdf))
+
+  knclusters <- get.knclusters(spdf, knresults)
+  if(length(knclusters) >0 ) {
+    clusters[unique(unlist(knclusters))] <- "CLUSTER"
+    clusters <- as.factor(clusters)
+  }
+
+  return(clusters)
 }
 

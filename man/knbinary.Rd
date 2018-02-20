@@ -7,7 +7,7 @@
 knbinary(datamap, knresults)
 }
 \arguments{
-\item{datamap}{data of the SpatialPolygonsDataFrame with the polygons
+\item{datamap}{data of the \link{SpatialPolygonsDataFrame} with the polygons
 of the map.}
 
 \item{knresults}{data frame with information of the detected clusters.
@@ -26,4 +26,20 @@ This function constructs a data frame with number of columns equal to the
 number of clusters. Each column is a binary representation of one of the
 clusters. The position i of the column is equal to 1 if the polygon i is
 in the cluster or 0 if it is not in the cluster.
+}
+\examples{
+library("DClusterm")
+library("RColorBrewer")
+
+data("NY8")
+data("NY8_clusters")
+
+stcl <- knbinary(NY8, ny.cl1)
+#Get first cluster
+NY8$CLUSTER <- stcl[, 1]
+
+#Plot cluster
+spplot(NY8, "CLUSTER", at = c(0, 0.5, 1.5), col = "#4D4D4D",
+  col.regions = c("white", "gray"))
+
 }

@@ -3,12 +3,23 @@
 \alias{brainNM}
 \alias{brainst}
 \alias{losalamos}
+\alias{brainNM_clusters}
+\alias{nm.m0}
+\alias{nm.m1}
+\alias{nm.cl0}
+\alias{nm.cl1}
 \title{Brain cancer in New Mexico, USA, 1973-1991.}
 \description{This data set contains the number of incident brain cancer cases in the 32 counties of New Mexico, USA, and each year of the period 1973-1991,
 and the location of Los Alamos National Laboratory.
 In addition, the data set also includes for each county and year information about
 the expected cases, the Standardized Morbidity Ratio (SMR),
-the FIPS...
+the FIPS, ...
+
+File brainNM_clusters contains the results of running DetectClustersModel on a
+null model ('nm.m0') and another one with covariates ('nm.m1'). The results are
+in 'nm.cl0' and 'nm.cl1', respectively.
+
+
 }
 \usage{data(brainNM)}
 \format{brainst: A STFDF object containing the following information for each county and year:

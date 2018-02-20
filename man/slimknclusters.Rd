@@ -23,3 +23,9 @@ The spatial scan statistic is known to detect duplicated
 clusters. This function aims to reduce the number of clusters
 by removing duplicated and overlapping clusters.
 }
+\examples{
+data("brainNM_clusters")
+
+nm.cl1.s <- slimknclusters(brainst, nm.cl1)
+nm.cl1.s
+}

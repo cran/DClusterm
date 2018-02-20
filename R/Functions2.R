@@ -63,10 +63,10 @@ CreateGridDClusterm <- function(stfdf, radius, step) {
 ##' cluster in the vector sortDates
 ##' @param fractpop maximum fraction of the total population inside the cluster.
 ##' @param model0 Initial model (including covariates).
-##' This can be "glm" for generalized linear models (glm {stats}),
-##' "glmer" for generalized linear mixed model (glmer {lme4}),
-##' "zeroinfl" for zero-inflated models (zeroinfl {pscl}), or
-##' "inla" for generalized linear, generalized linear mixed or zero-inflated models.
+##' This can be "glm" for generalized linear models (\link{glm} {stats}),
+##' "glmer" for generalized linear mixed model (\link{glmer} {lme4}),
+##' "zeroinfl" for zero-inflated models (\link{zeroinfl} {pscl}), or
+##' "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \link[INLA]{inla}.
 ##' @param ClusterSizeContribution Variable used to check the fraction of the 
 ##' population at risk in the cluster
 ##' @param numCPUS Number of cpus used when using parallel  to run the method.
@@ -168,10 +168,10 @@ CalcStatsAllClusters <- function(thegrid, CalcStatClusterGivenCenter, stfdf,
 ##' @param model0 Initial model (including covariates).
 ##' @param ClusterSizeContribution Variable used to check the fraction of the 
 ##' population at risk in the cluster
-##' This can be "glm" for generalized linear models (glm {stats}),
-##' "glmer" for generalized linear mixed model (glmer {lme4}),
-##' "zeroinfl" for zero-inflated models (zeroinfl {pscl}), or
-##' "inla" for generalized linear, generalized linear mixed or zero-inflated models.
+##' This can be "glm" for generalized linear models (\link{glm} {stats}),
+##' "glmer" for generalized linear mixed model (\link{glmer} {lme4}),
+##' "zeroinfl" for zero-inflated models (\link{zeroinfl} {pscl}), or
+##' "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \link[INLA]{inla}.
 ##'
 ##' @return vector containing the coordinates of the center, the size,
 ##' the start and end dates, the log-likelihood ratio or DIC, the p-value and 

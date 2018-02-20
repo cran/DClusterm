@@ -9,7 +9,7 @@ get.stclusters(stfdf, results)
 \arguments{
 \item{stfdf}{A sp or spacetime object with the information about the data.}
 
-\item{results}{Results from a call to DetectClusterModel}
+\item{results}{Results from a call to \link{DetectClustersModel}}
 }
 \value{
 A list with as many elements as clusters in 'results'
@@ -17,4 +17,21 @@ A list with as many elements as clusters in 'results'
 \description{
 This function is similar to get.knclusters but it also allows
 for spatio-temporal clusters.
+}
+\examples{
+library("DClusterm")
+library("RColorBrewer")
+
+data("brainNM")
+data("brainNM_clusters")
+
+stcl <- get.stclusters(brainst, nm.cl0)
+#Get first cluster
+brainst$CLUSTER <- ""
+brainst$CLUSTER[ stcl[[1]] ] <- "CLUSTER"
+
+#Plot cluster
+stplot(brainst[, , "CLUSTER"], at = c(0, 0.5, 1.5), col = "#4D4D4D",
+  col.regions = c("white", "gray"))
+
 }
