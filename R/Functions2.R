@@ -66,7 +66,7 @@ CreateGridDClusterm <- function(stfdf, radius, step) {
 ##' This can be "glm" for generalized linear models (\link{glm} {stats}),
 ##' "glmer" for generalized linear mixed model (\link{glmer} {lme4}),
 ##' "zeroinfl" for zero-inflated models (\link{zeroinfl} {pscl}), or
-##' "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \link[INLA]{inla}.
+##' "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \code{inla}.
 ##' @param ClusterSizeContribution Variable used to check the fraction of the 
 ##' population at risk in the cluster
 ##' @param numCPUS Number of cpus used when using parallel  to run the method.
@@ -171,7 +171,7 @@ CalcStatsAllClusters <- function(thegrid, CalcStatClusterGivenCenter, stfdf,
 ##' This can be "glm" for generalized linear models (\link{glm} {stats}),
 ##' "glmer" for generalized linear mixed model (\link{glmer} {lme4}),
 ##' "zeroinfl" for zero-inflated models (\link{zeroinfl} {pscl}), or
-##' "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \link[INLA]{inla}.
+##' "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \code{inla}.
 ##'
 ##' @return vector containing the coordinates of the center, the size,
 ##' the start and end dates, the log-likelihood ratio or DIC, the p-value and 

@@ -50,7 +50,7 @@ Monte Carlo procedure, R represents the number replicates under the null hypothe
 This can be "glm" for generalized linear models (\link{glm} {stats}),
 "glmer" for generalized linear mixed model (\link{glmer} {lme4}),
 "zeroinfl" for zero-inflated models (\link{zeroinfl} {pscl}), or
-"inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \link[INLA]{inla}.}
+"inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \code{inla}.}
 }
 \value{
 data frame with information of the detected clusters ordered by its
@@ -72,7 +72,7 @@ less than radius.
 The search can be done for spatial or spatio-temporal clusters.
 The significance of the clusters is obtained with a Monte Carlo procedure
 or based on the chi-square distribution (\link{glm}, \link{glmer} or \link{zeroinfl} models)
-or DIC (\link[INLA]{inla} models).
+or DIC (\code{inla} models).
 }
 \examples{
 library("DClusterm")
