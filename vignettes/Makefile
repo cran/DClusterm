@@ -8,7 +8,7 @@ pdf: DClusterm.pdf
 	pdflatex $*
 	pdflatex $*
 	pdflatex $*
-	rm DClusterm-0*pdf
+	#rm DClusterm-0*pdf
 
 clean:
 	rm *tex *aux *log *bbl *blg *out DClusterm-*.pdf jss.bst jss.cls

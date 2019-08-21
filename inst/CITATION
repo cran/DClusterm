@@ -1,0 +1,47 @@
+bibentry(bibtype = "Article",
+  title        = "{DClusterm}: Model-Based Detection of Disease Clusters",
+  author       = c(person(given = "Virgilio",
+                          family = "G\\'omez-Rubio",
+                          email = "virgilio.gomez@uclm.es"),
+                   person(given = "Paula",
+                          family = "Moraga",
+                          email = "p.e.moraga-serrano@lancaster.ac.uk"),
+                   person(given = "John",
+                          family = "Molitor",
+                          email = "John.Molitor@oregonstate.edu"),
+                   person(given = "Barry",
+                          family = "Rowlingson",
+                          email = "b.rowlingson@lancaster.ac.uk")),
+  journal      = "Journal of Statistical Software",
+  year         = "2019",
+  volume       = "90",
+  number       = "14",
+  pages        = "1--26",
+  doi          = "10.18637/jss.v090.i14",
+
+  header       = "To cite DClusterm in publications use:"
+)
+
+
+bibentry(bibtype = "InCollection",
+  title        = "Fast Bayesian Classification for Disease Mapping and the Detection of Disease Clusters",
+  author       = c(person(given = "Virgilio",
+                          family = "G\\'omez-Rubio",
+                          email = "virgilio.gomez@uclm.es"),
+                   person(given = "Paula",
+                          family = "Moraga",
+                          email = "p.e.moraga-serrano@lancaster.ac.uk"),
+                   person(given = "John",
+                          family = "Molitor",
+                          email = "John.Molitor@oregonstate.edu")),
+  booktitle      = "Quantitative Methods in Environmental and Climate Research",
+  year         = "2018",
+  doi          = "10.1007/978-3-030-01584-8_1",
+  editor = c(person(given = "Michela",
+                          family = "Cameletti"),
+             person(given = "Francesco", family = "Finazzi")),
+  publisher = "Springer-Verlag",
+  
+  header       = "Bayesian methods implemented in DClusterm are described here:"
+)
+

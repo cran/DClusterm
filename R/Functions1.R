@@ -51,7 +51,7 @@
 ##' Thus, rows that should be considered clusters are the ones with
 ##' p-value less than alpha_bonferroni.
 ##'
-##' @references
+##' @references {
 ##'
 ##' Bilancia M, Demarinis G (2014) Bayesian scanning of spatial disease rates
 ##' with the Integrated Nested Laplace Approximation (INLA). Statistical
@@ -59,10 +59,16 @@
 ##'
 ##' Jung I (2009) A generalized linear models approach to spatial scan 
 ##' statistics for covariate adjustment. Statistics in Medicine 28(7): 1131 - 1143.
+##' Gómez-Rubio V, Molitor J, Moraga P (2018) Fast Bayesian Classification 
+##' for Disease Mapping and the Detection of Disease Clusters. In: Cameletti M.,
+##' Finazzi F. (eds) Quantitative Methods in Environmental and Climate Research.
+##' Springer, Cham
 ##'
-##' Fast Bayesian classification for disease mapping and the detection of 
-##' disease clusters (2017) Gomez-Rubio V, Molitor J, Moraga P. Submitted.
-##'
+##' Gómez-Rubio V, Moraga P, Molitor J, Rowlingson B (2019). "DClusterm:
+##' Model-Based Detection of Disease Clusters." _Journal of Statistical
+##' Software_, *90*(14), 1-26. doi: 10.18637/jss.v090.i14 (URL:
+##' https://doi.org/10.18637/jss.v090.i14).
+##' }
 ##' @examples
 ##' library("DClusterm")
 ##' data("NY8")
@@ -91,8 +97,7 @@
 ##' #Display results
 ##' ny.cl1
 ##'
-##' @export
-##'
+##' 
 ##' @import DCluster
 ##' @import parallel
 ##' @import sp
@@ -104,6 +109,8 @@
 ##' @importFrom stats coef deviance family glm logLik model.matrix
 ##' @importFrom grDevices dev.new
 ##' @importFrom pscl zeroinfl
+##'
+##' @export
 DetectClustersModel <- function(stfdf, thegrid = NULL, radius = Inf,
   step = NULL, fractpop, alpha, typeCluster = "S",
   minDateUser = NULL, maxDateUser = NULL,
@@ -363,7 +370,6 @@ DetectClustersModel <- function(stfdf, thegrid = NULL, radius = Inf,
 ##' 
 ##' SelectStatsAllClustersNoOverlap(brainst, nm.cl1)
 ##' @export
-
 SelectStatsAllClustersNoOverlap <- function(stfdf, statsAllClusters) {
   # statsAllClusters is ordered by statistic value
   coordx <- coordinates(stfdf@sp)[, 1]

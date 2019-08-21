@@ -5,8 +5,8 @@
 \title{Calls the function to obtain the cluster with the maximum log-likelihood ratio
 or minimum DIC of all the clusters with the same center and start and end dates.}
 \usage{
-CalcStatClusterGivenCenter(point, stfdf, rr, minDateCluster, maxDateCluster,
-  fractpop, model0, ClusterSizeContribution)
+CalcStatClusterGivenCenter(point, stfdf, rr, minDateCluster,
+  maxDateCluster, fractpop, model0, ClusterSizeContribution)
 }
 \arguments{
 \item{point}{vector with the coordinates of the center of the cluster.}

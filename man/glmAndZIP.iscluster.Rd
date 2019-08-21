@@ -5,8 +5,8 @@
 \title{Obtains the cluster with the maximum log-likelihood ratio or minimum DIC
 of all the clusters with the same center and start and end dates.}
 \usage{
-glmAndZIP.iscluster(stfdf, idxorder, minDateCluster, maxDateCluster, fractpop,
-  model0, ClusterSizeContribution)
+glmAndZIP.iscluster(stfdf, idxorder, minDateCluster, maxDateCluster,
+  fractpop, model0, ClusterSizeContribution)
 }
 \arguments{
 \item{stfdf}{a spatio-temporal class object containing the data.}

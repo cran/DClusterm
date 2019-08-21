@@ -6,8 +6,8 @@
 for each center and start and end dates.}
 \usage{
 CalcStatsAllClusters(thegrid, CalcStatClusterGivenCenter, stfdf, rr,
-  typeCluster, sortDates, idMinDateCluster, idMaxDateCluster, fractpop, model0,
-  ClusterSizeContribution, numCPUS)
+  typeCluster, sortDates, idMinDateCluster, idMaxDateCluster, fractpop,
+  model0, ClusterSizeContribution, numCPUS)
 }
 \arguments{
 \item{thegrid}{grid with the coordinates of the centers of the clusters

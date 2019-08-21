@@ -1,14 +1,15 @@
 ### R code from vignette source 'DClusterm.Rnw'
+### Encoding: UTF-8
 
 ###################################################
 ### code chunk number 1: DClusterm.Rnw:5-7
 ###################################################
 #JSS style
-options(prompt = "R> ", continue = "+  ", width = 70, useFancyQuotes = FALSE)
+options(prompt = "R> ", continue = "+", width = 70, useFancyQuotes = FALSE)
 
 
 ###################################################
-### code chunk number 2: DClusterm.Rnw:334-337
+### code chunk number 2: DClusterm.Rnw:315-318
 ###################################################
 library("DClusterm")
 
@@ -16,7 +17,7 @@ data("NY8")
 
 
 ###################################################
-### code chunk number 3: DClusterm.Rnw:348-353
+### code chunk number 3: DClusterm.Rnw:329-334
 ###################################################
 NY8$Observed <- round(NY8$Cases)
 
@@ -26,14 +27,14 @@ NY8$SMR <- NY8$Observed / NY8$Expected
 
 
 ###################################################
-### code chunk number 4: DClusterm.Rnw:362-364
+### code chunk number 4: DClusterm.Rnw:343-345
 ###################################################
 NY8$x <- coordinates(NY8)[, 1]
 NY8$y <- coordinates(NY8)[, 2]
 
 
 ###################################################
-### code chunk number 5: DClusterm.Rnw:372-375 (eval = FALSE)
+### code chunk number 5: DClusterm.Rnw:353-356 (eval = FALSE)
 ###################################################
 ## NY8st <- STFDF(as(NY8, "SpatialPolygons"), xts(1, as.Date("1972-01-01")),
 ##   NY8@data, endTime = as.POSIXct(strptime(c("1972-01-01"), "%Y-%m-%d"),
@@ -41,13 +42,13 @@ NY8$y <- coordinates(NY8)[, 2]
 
 
 ###################################################
-### code chunk number 6: DClusterm.Rnw:383-402
+### code chunk number 6: DClusterm.Rnw:364-383
 ###################################################
 library("RColorBrewer")
 
 #Save plots
 p1 <- spplot(NY8, "SMR", cuts = 8, col.regions = brewer.pal(9, "Oranges"),
-  main = "Standardised Mortality Ratio", 
+  main = "Standardized mortality ratio", 
   sp.layout = list(list("sp.points", TCE, col = "red")))
 p2 <- spplot(NY8, "PCTOWNHOME", cuts = 8, col.regions = brewer.pal(9, "Blues"),
   main = "PCTOWNHOME")
@@ -65,20 +66,20 @@ print(p4, position = c(0.5, 0, 1, 0.5))
 
 
 ###################################################
-### code chunk number 7: DClusterm.Rnw:420-422
+### code chunk number 7: DClusterm.Rnw:401-403
 ###################################################
 ny.m0 <- glm(Observed ~ offset(log(Expected)) + 1, family = "poisson",
   data = NY8)
 
 
 ###################################################
-### code chunk number 8: DClusterm.Rnw:476-477
+### code chunk number 8: DClusterm.Rnw:457-458
 ###################################################
 options(mc.cores = 2)
 
 
 ###################################################
-### code chunk number 9: DClusterm.Rnw:485-491
+### code chunk number 9: DClusterm.Rnw:466-472
 ###################################################
 idxcl <- c(120, 12, 89, 139, 146)
 ny.cl0 <- DetectClustersModel(NY8,
@@ -89,19 +90,19 @@ ny.cl0 <- DetectClustersModel(NY8,
 
 
 ###################################################
-### code chunk number 10: DClusterm.Rnw:507-508
+### code chunk number 10: DClusterm.Rnw:488-489
 ###################################################
 ny.cl0
 
 
 ###################################################
-### code chunk number 11: DClusterm.Rnw:518-519
+### code chunk number 11: DClusterm.Rnw:499-500
 ###################################################
 NY8$CLUSTER0 <- get.allknclusters(NY8, ny.cl0)
 
 
 ###################################################
-### code chunk number 12: DClusterm.Rnw:529-532 (eval = FALSE)
+### code chunk number 12: DClusterm.Rnw:510-513 (eval = FALSE)
 ###################################################
 ## cl0.centres <- SpatialPoints(ny.cl0[, 1:2])
 ## spplot(NY8, "CLUSTER0", col.regions = c("white", "gray"), col = "#4D4D4D",
@@ -109,7 +110,7 @@ NY8$CLUSTER0 <- get.allknclusters(NY8, ny.cl0)
 
 
 ###################################################
-### code chunk number 13: DClusterm.Rnw:545-548
+### code chunk number 13: DClusterm.Rnw:526-529
 ###################################################
 ny.m1 <- glm(Observed ~ offset(log(Expected)) + PCTOWNHOME + PCTAGE65P + 
   PEXPOSURE, family = "poisson", data = NY8)
@@ -117,7 +118,7 @@ summary(ny.m1)
 
 
 ###################################################
-### code chunk number 14: DClusterm.Rnw:556-560
+### code chunk number 14: DClusterm.Rnw:537-541
 ###################################################
 ny.cl1 <- DetectClustersModel(NY8, 
   thegrid = as.data.frame(NY8)[idxcl, c("x", "y")], fractpop = 0.15, 
@@ -126,19 +127,19 @@ ny.cl1 <- DetectClustersModel(NY8,
 
 
 ###################################################
-### code chunk number 15: DClusterm.Rnw:563-564
+### code chunk number 15: DClusterm.Rnw:544-545
 ###################################################
 ny.cl1
 
 
 ###################################################
-### code chunk number 16: DClusterm.Rnw:571-572
+### code chunk number 16: DClusterm.Rnw:552-553
 ###################################################
 NY8$CLUSTER1 <- get.allknclusters(NY8, ny.cl1)
 
 
 ###################################################
-### code chunk number 17: DClusterm.Rnw:589-614
+### code chunk number 17: DClusterm.Rnw:568-593
 ###################################################
 library("gridExtra")
 library("latticeExtra")
@@ -168,27 +169,27 @@ grid.arrange(ny.map0, ny.map1, ny.map0.s, ny.map1.s, ncol = 2)
 
 
 ###################################################
-### code chunk number 18: DClusterm.Rnw:643-644
+### code chunk number 18: DClusterm.Rnw:622-623
 ###################################################
 slimknclusters(NY8, ny.cl1, 3)
 
 
 ###################################################
-### code chunk number 19: DClusterm.Rnw:699-701
+### code chunk number 19: DClusterm.Rnw:678-680
 ###################################################
 DeanB(ny.m0)
 DeanB2(ny.m0)
 
 
 ###################################################
-### code chunk number 20: DClusterm.Rnw:710-712
+### code chunk number 20: DClusterm.Rnw:689-691
 ###################################################
 DeanB(ny.m1)
 DeanB2(ny.m1)
 
 
 ###################################################
-### code chunk number 21: DClusterm.Rnw:729-732
+### code chunk number 21: DClusterm.Rnw:708-711
 ###################################################
 library("lme4")
 ny.mm0 <- glmer(Observed ~ offset(log(Expected)) + (1 | AREANAME), 
@@ -196,7 +197,7 @@ ny.mm0 <- glmer(Observed ~ offset(log(Expected)) + (1 | AREANAME),
 
 
 ###################################################
-### code chunk number 22: DClusterm.Rnw:735-739
+### code chunk number 22: DClusterm.Rnw:714-718
 ###################################################
 ny.clmm0 <- DetectClustersModel(NY8,
   thegrid = as.data.frame(NY8)[idxcl, c("x", "y")], fractpop = 0.15,
@@ -205,13 +206,13 @@ ny.clmm0 <- DetectClustersModel(NY8,
 
 
 ###################################################
-### code chunk number 23: DClusterm.Rnw:742-743
+### code chunk number 23: DClusterm.Rnw:721-722
 ###################################################
 ny.clmm0
 
 
 ###################################################
-### code chunk number 24: DClusterm.Rnw:755-762 (eval = FALSE)
+### code chunk number 24: DClusterm.Rnw:734-741 (eval = FALSE)
 ###################################################
 ## #Compute SMR in clusters
 ## cls <- get.knclusters(NY8, ny.cl0)
@@ -223,7 +224,7 @@ ny.clmm0
 
 
 ###################################################
-### code chunk number 25: DClusterm.Rnw:769-773
+### code chunk number 25: DClusterm.Rnw:748-752
 ###################################################
 ny.mm1 <- glmer(Observed ~ offset(log(Expected)) + PCTOWNHOME + 
   PCTAGE65P + PEXPOSURE + (1 | AREANAME),
@@ -232,7 +233,7 @@ ny.mm1 <- glmer(Observed ~ offset(log(Expected)) + PCTOWNHOME +
 
 
 ###################################################
-### code chunk number 26: DClusterm.Rnw:781-785
+### code chunk number 26: DClusterm.Rnw:760-764
 ###################################################
 ny.clmm1 <- DetectClustersModel(NY8,
   thegrid = as.data.frame(NY8)[idxcl, c("x", "y")], fractpop = 0.15,
@@ -241,20 +242,20 @@ ny.clmm1 <- DetectClustersModel(NY8,
 
 
 ###################################################
-### code chunk number 27: DClusterm.Rnw:788-789
+### code chunk number 27: DClusterm.Rnw:767-768
 ###################################################
 ny.clmm1
 
 
 ###################################################
-### code chunk number 28: DClusterm.Rnw:802-804
+### code chunk number 28: DClusterm.Rnw:781-783
 ###################################################
 NY8$CLUSTERMM0 <- get.allknclusters(NY8, ny.clmm0)
 NY8$CLUSTERMM1 <- get.allknclusters(NY8, ny.clmm1)
 
 
 ###################################################
-### code chunk number 29: DClusterm.Rnw:810-832
+### code chunk number 29: DClusterm.Rnw:789-811
 ###################################################
 
 ny.mapmm0 <- spplot(NY8, c("CLUSTERMM0"), col.regions = c("white", "gray"),
@@ -281,7 +282,7 @@ grid.arrange(ny.mapmm0, ny.mapmm1, ny.mapmm0.s, ny.mapmm1.s, ncol = 2)
 
 
 ###################################################
-### code chunk number 30: DClusterm.Rnw:891-894
+### code chunk number 30: DClusterm.Rnw:870-873
 ###################################################
 library("DClusterm")
 
@@ -289,28 +290,28 @@ data("Navarre")
 
 
 ###################################################
-### code chunk number 31: DClusterm.Rnw:899-901
+### code chunk number 31: DClusterm.Rnw:878-880
 ###################################################
 print(spplot(brainnav, "SMR", cuts = 8, 
   col.regions = brewer.pal(9, "Oranges")))
 
 
 ###################################################
-### code chunk number 32: DClusterm.Rnw:916-918
+### code chunk number 32: DClusterm.Rnw:895-897
 ###################################################
 nav.m0 <- glm(OBSERVED ~ offset(log(EXPECTED)) + 1, family = "poisson",
   data = brainnav)
 
 
 ###################################################
-### code chunk number 33: DClusterm.Rnw:924-926
+### code chunk number 33: DClusterm.Rnw:903-905
 ###################################################
 nav.m0q <- glm(OBSERVED ~ offset(log(EXPECTED)) + 1, data = brainnav,
   family = "quasipoisson")
 
 
 ###################################################
-### code chunk number 34: DClusterm.Rnw:939-943
+### code chunk number 34: DClusterm.Rnw:919-923
 ###################################################
 library("pscl")
 nav.m0zip <- zeroinfl(OBSERVED ~ offset(log(EXPECTED)) + 1 | 1,
@@ -319,13 +320,7 @@ summary(nav.m0zip)
 
 
 ###################################################
-### code chunk number 35: DClusterm.Rnw:953-954
-###################################################
-brainnav$Expected <- brainnav$EXPECTED
-
-
-###################################################
-### code chunk number 36: DClusterm.Rnw:962-965
+### code chunk number 35: DClusterm.Rnw:939-942
 ###################################################
 nav.cl0 <- DetectClustersModel(brainnav, coordinates(brainnav),
   fractpop = 0.25, alpha = 0.05, typeCluster = "S", R = NULL,
@@ -333,13 +328,13 @@ nav.cl0 <- DetectClustersModel(brainnav, coordinates(brainnav),
 
 
 ###################################################
-### code chunk number 37: DClusterm.Rnw:970-971
+### code chunk number 36: DClusterm.Rnw:947-948
 ###################################################
 nav.cl0
 
 
 ###################################################
-### code chunk number 38: DClusterm.Rnw:989-993
+### code chunk number 37: DClusterm.Rnw:966-970
 ###################################################
 nav.clusters <- get.knclusters(brainnav, nav.cl0)
 brainnav$CLUSTER <- ""
@@ -348,33 +343,33 @@ brainnav$CLUSTER <- as.factor(brainnav$CLUSTER)
 
 
 ###################################################
-### code chunk number 39: DClusterm.Rnw:998-1000
+### code chunk number 38: DClusterm.Rnw:975-977
 ###################################################
 print(spplot(brainnav, "CLUSTER",  col = "#4D4D4D", 
   col.regions = c("white", "grey")) )
 
 
 ###################################################
-### code chunk number 40: DClusterm.Rnw:1051-1052 (eval = FALSE)
+### code chunk number 39: DClusterm.Rnw:1027-1028 (eval = FALSE)
 ###################################################
 ## library("DClusterm")
 
 
 ###################################################
-### code chunk number 41: DClusterm.Rnw:1055-1056
+### code chunk number 40: DClusterm.Rnw:1031-1032
 ###################################################
 data("brainNM")
 
 
 ###################################################
-### code chunk number 42: DClusterm.Rnw:1066-1068
+### code chunk number 41: DClusterm.Rnw:1042-1044
 ###################################################
 print(stplot(brainst[, , "SMR"], cuts = 8, 
   col.regions = brewer.pal(9, "Oranges")))
 
 
 ###################################################
-### code chunk number 43: DClusterm.Rnw:1083-1086
+### code chunk number 42: DClusterm.Rnw:1059-1062
 ###################################################
 nm.m0 <- glm(Observed ~ offset(log(Expected)) + 1, family = "poisson", 
   data = brainst)
@@ -382,13 +377,13 @@ summary(nm.m0)
 
 
 ###################################################
-### code chunk number 44: DClusterm.Rnw:1094-1095
+### code chunk number 43: DClusterm.Rnw:1070-1071
 ###################################################
 NM.coords <- coordinates(brainst@sp)
 
 
 ###################################################
-### code chunk number 45: DClusterm.Rnw:1107-1111
+### code chunk number 44: DClusterm.Rnw:1083-1087
 ###################################################
 nm.cl0 <- DetectClustersModel(brainst, NM.coords,
   minDateUser = "1985-01-01", maxDateUser = "1989-01-01",
@@ -397,27 +392,27 @@ nm.cl0 <- DetectClustersModel(brainst, NM.coords,
 
 
 ###################################################
-### code chunk number 46: DClusterm.Rnw:1119-1121
+### code chunk number 45: DClusterm.Rnw:1095-1097
 ###################################################
 nm.cl0.s <- slimknclusters(brainst, nm.cl0)
 nm.cl0.s
 
 
 ###################################################
-### code chunk number 47: DClusterm.Rnw:1136-1137
+### code chunk number 46: DClusterm.Rnw:1112-1113
 ###################################################
 dst <- spDistsN1(pts = NM.coords, pt = losalamos, longlat = TRUE)
 
 
 ###################################################
-### code chunk number 48: DClusterm.Rnw:1145-1147
+### code chunk number 47: DClusterm.Rnw:1121-1123
 ###################################################
 nyears <- length(unique(brainst$Year))
 brainst$IDLANL <- rep(1 / dst, nyears)
 
 
 ###################################################
-### code chunk number 49: DClusterm.Rnw:1152-1155
+### code chunk number 48: DClusterm.Rnw:1128-1131
 ###################################################
 nm.m1 <- glm(Observed ~ offset(log(Expected)) + IDLANL,
   family = "poisson", data = brainst)
@@ -425,7 +420,7 @@ summary(nm.m1)
 
 
 ###################################################
-### code chunk number 50: DClusterm.Rnw:1164-1168
+### code chunk number 49: DClusterm.Rnw:1140-1144
 ###################################################
 nm.cl1 <- DetectClustersModel(brainst, NM.coords, fractpop = 0.15, 
   alpha = 0.05, minDateUser = "1985-01-01", maxDateUser = "1989-01-01",
@@ -434,14 +429,14 @@ nm.cl1 <- DetectClustersModel(brainst, NM.coords, fractpop = 0.15,
 
 
 ###################################################
-### code chunk number 51: DClusterm.Rnw:1177-1179
+### code chunk number 50: DClusterm.Rnw:1153-1155
 ###################################################
 nm.cl1.s <- slimknclusters(brainst, nm.cl1)
 nm.cl1.s
 
 
 ###################################################
-### code chunk number 52: DClusterm.Rnw:1191-1194
+### code chunk number 51: DClusterm.Rnw:1167-1170
 ###################################################
 stcl <- get.stclusters(brainst, nm.cl0.s)
 brainst$CLUSTER <- ""
@@ -449,7 +444,7 @@ brainst$CLUSTER[ stcl[[1]] ] <- "CLUSTER"
 
 
 ###################################################
-### code chunk number 53: DClusterm.Rnw:1199-1201
+### code chunk number 52: DClusterm.Rnw:1175-1177
 ###################################################
 print(stplot(brainst[, , "CLUSTER"], at = c(0, 0.5, 1.5), col = "#4D4D4D",
   col.regions = c("white", "gray")))
