@@ -5,8 +5,16 @@
 \title{Calls the function to obtain the cluster with the maximum log-likelihood ratio
 or minimum DIC of all the clusters with the same center and start and end dates.}
 \usage{
-CalcStatClusterGivenCenter(point, stfdf, rr, minDateCluster,
-  maxDateCluster, fractpop, model0, ClusterSizeContribution)
+CalcStatClusterGivenCenter(
+  point,
+  stfdf,
+  rr,
+  minDateCluster,
+  maxDateCluster,
+  fractpop,
+  model0,
+  ClusterSizeContribution
+)
 }
 \arguments{
 \item{point}{vector with the coordinates of the center of the cluster.}
@@ -27,7 +35,7 @@ CalcStatClusterGivenCenter(point, stfdf, rr, minDateCluster,
 population at risk in the cluster
 This can be "glm" for generalized linear models (\link{glm} {stats}),
 "glmer" for generalized linear mixed model (\link{glmer} {lme4}),
-"zeroinfl" for zero-inflated models (\link{zeroinfl} {pscl}), or
+"zeroinfl" for zero-inflated models (zeroinfl), or
 "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \code{inla}.}
 }
 \value{

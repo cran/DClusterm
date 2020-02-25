@@ -6,7 +6,7 @@
 ##' less than radius.
 ##' The search can be done for spatial or spatio-temporal clusters.
 ##' The significance of the clusters is obtained with a Monte Carlo procedure
-##' or based on the chi-square distribution (\link{glm}, \link{glmer} or \link{zeroinfl} models)
+##' or based on the chi-square distribution (\link{glm}, \link{glmer} or zeroinfl models)
 ##' or DIC (\code{inla} models).
 ##'
 ##' @param stfdf object containing the data.
@@ -37,7 +37,7 @@
 ##' @param ClusterSizeContribution Indicates the variable to be used as the population at risk in the cluster. This is the variable name to be used by 'fractpop' when checking the fraction of the population inside the cluster. The default column name is 'Population'.
 ##' This can be "glm" for generalized linear models (\link{glm} {stats}),
 ##' "glmer" for generalized linear mixed model (\link{glmer} {lme4}),
-##' "zeroinfl" for zero-inflated models (\link{zeroinfl} {pscl}), or
+##' "zeroinfl" for zero-inflated models (zeroinfl), or
 ##' "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \code{inla}.
 ##'
 ##' @return data frame with information of the detected clusters ordered by its
@@ -108,7 +108,7 @@
 ##' @importFrom stats time pchisq rpois formula fitted
 ##' @importFrom stats coef deviance family glm logLik model.matrix
 ##' @importFrom grDevices dev.new
-##' @importFrom pscl zeroinfl
+## @importFrom pscl zeroinfl
 ##'
 ##' @export
 DetectClustersModel <- function(stfdf, thegrid = NULL, radius = Inf,

@@ -8,7 +8,7 @@
 ##' distance to the center is less than radius.
 ##' For each one of these clusters, the log-likelihood ratio test statistic
 ##' for comparing the alternative model with the cluster versus the null model
-##' of no clusters (if model is \link{glm}, \link{glmer} or \link{zeroinfl}),
+##' of no clusters (if model is \link{glm}, \link{glmer} or zeroinfl),
 ##' or the DIC (if model is \code{inla}) is calculated.
 ##' The cluster with maximum value of the log-likelihood ratio or
 ##' minimum DIC is returned.
@@ -24,7 +24,7 @@
 ##' population at risk in the cluster
 ##' This can be "glm" for generalized linear models (\link{glm} {stats}),
 ##' "glmer" for generalized linear mixed model (\link{glmer} {lme4}),
-##' "zeroinfl" for zero-inflated models (\link{zeroinfl} {pscl}), or
+##' "zeroinfl" for zero-inflated models (zeroinfl), or
 ##' "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \code{inla}.
 ##'
 ##' @return vector containing the size, the start and end dates,
@@ -171,11 +171,15 @@ glmAndZIP.iscluster <- function(stfdf, idxorder, minDateCluster,
           (deviance(model0) - deviance(m1))/2, 0)
        },
        zeroinfl = {
-         m1 <- zeroinfl(newformula, data = d0, dist = modelDistZeroinfl,
+         if(requireNamespace("pscl", quietly = TRUE)) {
+         m1 <- pscl::zeroinfl(newformula, data = d0, dist = modelDistZeroinfl,
           link = modelLinkZeroinfl)
          riskAux <- as.numeric(coef(m1)[1])
          estadisticoAux <- ifelse(riskAux > 0, 
           (-2*logLik(model0) + 2*logLik(m1))/2, 0)
+         } else {
+           stop("Package pscl not available")
+        }
        },
        inla = {
          if(requireNamespace("INLA", quietly = TRUE)) {

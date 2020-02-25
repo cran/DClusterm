@@ -5,8 +5,15 @@
 \title{Obtains the cluster with the maximum log-likelihood ratio or minimum DIC
 of all the clusters with the same center and start and end dates.}
 \usage{
-glmAndZIP.iscluster(stfdf, idxorder, minDateCluster, maxDateCluster,
-  fractpop, model0, ClusterSizeContribution)
+glmAndZIP.iscluster(
+  stfdf,
+  idxorder,
+  minDateCluster,
+  maxDateCluster,
+  fractpop,
+  model0,
+  ClusterSizeContribution
+)
 }
 \arguments{
 \item{stfdf}{a spatio-temporal class object containing the data.}
@@ -26,7 +33,7 @@ the current center.}
 population at risk in the cluster
 This can be "glm" for generalized linear models (\link{glm} {stats}),
 "glmer" for generalized linear mixed model (\link{glmer} {lme4}),
-"zeroinfl" for zero-inflated models (\link{zeroinfl} {pscl}), or
+"zeroinfl" for zero-inflated models (zeroinfl), or
 "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \code{inla}.}
 }
 \value{
@@ -42,7 +49,7 @@ population inside the cluster is less than fractpop, and the maximum
 distance to the center is less than radius.
 For each one of these clusters, the log-likelihood ratio test statistic
 for comparing the alternative model with the cluster versus the null model
-of no clusters (if model is \link{glm}, \link{glmer} or \link{zeroinfl}),
+of no clusters (if model is \link{glm}, \link{glmer} or zeroinfl),
 or the DIC (if model is \code{inla}) is calculated.
 The cluster with maximum value of the log-likelihood ratio or
 minimum DIC is returned.

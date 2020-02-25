@@ -5,9 +5,20 @@
 \title{Obtains the clusters with the maximum log-likelihood ratio or minimum DIC
 for each center and start and end dates.}
 \usage{
-CalcStatsAllClusters(thegrid, CalcStatClusterGivenCenter, stfdf, rr,
-  typeCluster, sortDates, idMinDateCluster, idMaxDateCluster, fractpop,
-  model0, ClusterSizeContribution, numCPUS)
+CalcStatsAllClusters(
+  thegrid,
+  CalcStatClusterGivenCenter,
+  stfdf,
+  rr,
+  typeCluster,
+  sortDates,
+  idMinDateCluster,
+  idMaxDateCluster,
+  fractpop,
+  model0,
+  ClusterSizeContribution,
+  numCPUS
+)
 }
 \arguments{
 \item{thegrid}{grid with the coordinates of the centers of the clusters
@@ -37,7 +48,7 @@ cluster in the vector sortDates}
 \item{model0}{Initial model (including covariates).
 This can be "glm" for generalized linear models (\link{glm} {stats}),
 "glmer" for generalized linear mixed model (\link{glmer} {lme4}),
-"zeroinfl" for zero-inflated models (\link{zeroinfl} {pscl}), or
+"zeroinfl" for zero-inflated models (zeroinfl), or
 "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \code{inla}.}
 
 \item{ClusterSizeContribution}{Variable used to check the fraction of the 

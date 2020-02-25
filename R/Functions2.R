@@ -65,7 +65,7 @@ CreateGridDClusterm <- function(stfdf, radius, step) {
 ##' @param model0 Initial model (including covariates).
 ##' This can be "glm" for generalized linear models (\link{glm} {stats}),
 ##' "glmer" for generalized linear mixed model (\link{glmer} {lme4}),
-##' "zeroinfl" for zero-inflated models (\link{zeroinfl} {pscl}), or
+##' "zeroinfl" for zero-inflated models (zeroinfl), or
 ##' "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \code{inla}.
 ##' @param ClusterSizeContribution Variable used to check the fraction of the 
 ##' population at risk in the cluster
@@ -170,7 +170,7 @@ CalcStatsAllClusters <- function(thegrid, CalcStatClusterGivenCenter, stfdf,
 ##' population at risk in the cluster
 ##' This can be "glm" for generalized linear models (\link{glm} {stats}),
 ##' "glmer" for generalized linear mixed model (\link{glmer} {lme4}),
-##' "zeroinfl" for zero-inflated models (\link{zeroinfl} {pscl}), or
+##' "zeroinfl" for zero-inflated models (zeroinfl), or
 ##' "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \code{inla}.
 ##'
 ##' @return vector containing the coordinates of the center, the size,

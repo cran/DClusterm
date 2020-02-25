@@ -4,10 +4,20 @@
 \alias{DetectClustersModel}
 \title{Detects clusters and computes their significance.}
 \usage{
-DetectClustersModel(stfdf, thegrid = NULL, radius = Inf, step = NULL,
-  fractpop, alpha, typeCluster = "S", minDateUser = NULL,
-  maxDateUser = NULL, R = NULL, model0,
-  ClusterSizeContribution = "Population")
+DetectClustersModel(
+  stfdf,
+  thegrid = NULL,
+  radius = Inf,
+  step = NULL,
+  fractpop,
+  alpha,
+  typeCluster = "S",
+  minDateUser = NULL,
+  maxDateUser = NULL,
+  R = NULL,
+  model0,
+  ClusterSizeContribution = "Population"
+)
 }
 \arguments{
 \item{stfdf}{object containing the data.
@@ -49,7 +59,7 @@ Monte Carlo procedure, R represents the number replicates under the null hypothe
 \item{ClusterSizeContribution}{Indicates the variable to be used as the population at risk in the cluster. This is the variable name to be used by 'fractpop' when checking the fraction of the population inside the cluster. The default column name is 'Population'.
 This can be "glm" for generalized linear models (\link{glm} {stats}),
 "glmer" for generalized linear mixed model (\link{glmer} {lme4}),
-"zeroinfl" for zero-inflated models (\link{zeroinfl} {pscl}), or
+"zeroinfl" for zero-inflated models (zeroinfl), or
 "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \code{inla}.}
 }
 \value{
@@ -71,7 +81,7 @@ the cluster is less than fractpop, and the maximum distance to the center is
 less than radius.
 The search can be done for spatial or spatio-temporal clusters.
 The significance of the clusters is obtained with a Monte Carlo procedure
-or based on the chi-square distribution (\link{glm}, \link{glmer} or \link{zeroinfl} models)
+or based on the chi-square distribution (\link{glm}, \link{glmer} or zeroinfl models)
 or DIC (\code{inla} models).
 }
 \examples{
