@@ -21,9 +21,9 @@ DetectClustersModel(
 }
 \arguments{
 \item{stfdf}{object containing the data.
-If data is spatial, stfdf is a \link{SpatialPolygonsDataFrame} object from sp.
-If data is spatio-temporal, stfdf is a \link{STFDF} object from spacetime.
-The data contain a \link{SpatialPolygons} object with the coordinates,
+If data is spatial, stfdf is a \link[sp]{SpatialPolygonsDataFrame} object from sp.
+If data is spatio-temporal, stfdf is a \link[spacetime]{STFDF} object from spacetime.
+The data contain a \link[sp]{SpatialPolygons} object with the coordinates,
 and if applicable, a time object holding time information,
 an endTime vector of class \link{POSIXct} holding end points of time intervals.
 It also contain a data.frame with the Observed, Expected and potential covariates
@@ -57,8 +57,8 @@ Monte Carlo procedure, R represents the number replicates under the null hypothe
 \item{model0}{Initial model (including covariates).}
 
 \item{ClusterSizeContribution}{Indicates the variable to be used as the population at risk in the cluster. This is the variable name to be used by 'fractpop' when checking the fraction of the population inside the cluster. The default column name is 'Population'.
-This can be "glm" for generalized linear models (\link{glm} {stats}),
-"glmer" for generalized linear mixed model (\link{glmer} {lme4}),
+This can be "glm" for generalized linear models (\link[stats]{glm}),
+"glmer" for generalized linear mixed model (\link[lme4]{glmer}),
 "zeroinfl" for zero-inflated models (zeroinfl), or
 "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \code{inla}.}
 }
@@ -81,7 +81,7 @@ the cluster is less than fractpop, and the maximum distance to the center is
 less than radius.
 The search can be done for spatial or spatio-temporal clusters.
 The significance of the clusters is obtained with a Monte Carlo procedure
-or based on the chi-square distribution (\link{glm}, \link{glmer} or zeroinfl models)
+or based on the chi-square distribution (\link{glm}, \link[lme4]{glmer} or zeroinfl models)
 or DIC (\code{inla} models).
 }
 \examples{
@@ -119,7 +119,7 @@ ny.cl1
 
 Bilancia M, Demarinis G (2014) Bayesian scanning of spatial disease rates
 with the Integrated Nested Laplace Approximation (INLA). Statistical
-Methods & Applications 23(1): 71 - 94. \url{http://dx.doi.org/10.1007/s10260-013-0241-8}
+Methods & Applications 23(1): 71 - 94. \doi{10.1007/s10260-013-0241-8}
 
 Jung I (2009) A generalized linear models approach to spatial scan 
 statistics for covariate adjustment. Statistics in Medicine 28(7): 1131 - 1143.

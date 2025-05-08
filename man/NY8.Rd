@@ -57,7 +57,7 @@ to leukemia incidence in tce-contamined dumpsites in upstate New York.
 Environmetrics 3, 281-300
 
 Waller, L. A. and C. A. Gotway (2004). Applied Spatial Statistics for Public
-Health Data. John Wiley & Sons, Hoboken, New Jersey. \url{http://web1.sph.emory.edu/users/lwaller/WGindex.htm}
+Health Data. John Wiley & Sons, Hoboken, New Jersey.
 
 
 }

@@ -29,7 +29,7 @@ brainnavnb: A neighbor (nb) object which contains the index numbers of the neigh
 }
 \source{ 
 Data set obtained from Ugarte et al. (2004). Boundaries downloaded 
-in shapefile format from \url{http://idena.navarra.es}. These have been thinned to reduce space use.
+in shapefile format from \url{https://geoportal.navarra.es/es/idena}. These have been thinned to reduce space use.
 }
 \references{
 Ugarte, M. D., B. Ibáñez, and A. F. Militino (2004). Testing for poisson zero a

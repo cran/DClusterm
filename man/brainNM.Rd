@@ -42,7 +42,7 @@ obtained from the U.S. Census Bureau. Cibola and Valencia counties has been
 merged together.
 }
 \references{
-SatScan (c). \url{http://www.spatstat.org}
+SatScan (c). \url{https://www.satscan.org}
 
 Kulldorff, M., W. F. Athas, E. J. Feurer, B. A. Miller, and C. R. Key (1998).
 Evaluating cluster alarms: a space-time scan statistic and brain cancer in

@@ -63,8 +63,8 @@ CreateGridDClusterm <- function(stfdf, radius, step) {
 ##' cluster in the vector sortDates
 ##' @param fractpop maximum fraction of the total population inside the cluster.
 ##' @param model0 Initial model (including covariates).
-##' This can be "glm" for generalized linear models (\link{glm} {stats}),
-##' "glmer" for generalized linear mixed model (\link{glmer} {lme4}),
+##' This can be "glm" for generalized linear models (\link[stats]{glm}),
+##' "glmer" for generalized linear mixed model (\link[lme4]{glmer}),
 ##' "zeroinfl" for zero-inflated models (zeroinfl), or
 ##' "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \code{inla}.
 ##' @param ClusterSizeContribution Variable used to check the fraction of the 
@@ -168,8 +168,8 @@ CalcStatsAllClusters <- function(thegrid, CalcStatClusterGivenCenter, stfdf,
 ##' @param model0 Initial model (including covariates).
 ##' @param ClusterSizeContribution Variable used to check the fraction of the 
 ##' population at risk in the cluster
-##' This can be "glm" for generalized linear models (\link{glm} {stats}),
-##' "glmer" for generalized linear mixed model (\link{glmer} {lme4}),
+##' This can be "glm" for generalized linear models (\link[stats]{glm}),
+##' "glmer" for generalized linear mixed model (\link[lme4]{glmer}),
 ##' "zeroinfl" for zero-inflated models (zeroinfl), or
 ##' "inla" for generalized linear, generalized linear mixed or zero-inflated models fitted with \code{inla}.
 ##'

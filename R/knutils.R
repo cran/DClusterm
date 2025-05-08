@@ -91,7 +91,7 @@ get.stclusters <- function(stfdf, results) {
 ##' clusters. The position i of the column is equal to 1 if the polygon i is
 ##' in the cluster or 0 if it is not in the cluster.
 ##'
-##' @param datamap data of the \link{SpatialPolygonsDataFrame} with the polygons
+##' @param datamap data of the \link[sp]{SpatialPolygonsDataFrame} with the polygons
 ##' of the map.
 ##' @param knresults data frame with information of the detected clusters.
 ##' Each row represents the information of one of the clusters.
@@ -140,7 +140,7 @@ knbinary <- function(datamap, knresults) {
 ##' The levels of the factor are "NCL" if the polygon of the map is not
 ##' in any cluster, and "CL" if the polygon i is in cluster i.
 ##'
-##' @param datamap data of the \link{SpatialPolygonsDataFrame} with the polygons
+##' @param datamap data of the \link[sp]{SpatialPolygonsDataFrame} with the polygons
 ##' of the map.
 ##' @param knresults Data frame with information of the detected clusters.
 ##' Each row represents the information of one of the clusters.

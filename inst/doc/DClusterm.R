@@ -1,5 +1,4 @@
 ### R code from vignette source 'DClusterm.Rnw'
-### Encoding: UTF-8
 
 ###################################################
 ### code chunk number 1: DClusterm.Rnw:5-7

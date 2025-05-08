@@ -7,7 +7,7 @@
 knbinary(datamap, knresults)
 }
 \arguments{
-\item{datamap}{data of the \link{SpatialPolygonsDataFrame} with the polygons
+\item{datamap}{data of the \link[sp]{SpatialPolygonsDataFrame} with the polygons
 of the map.}
 
 \item{knresults}{data frame with information of the detected clusters.
